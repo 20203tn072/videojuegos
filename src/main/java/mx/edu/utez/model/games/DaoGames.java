@@ -88,6 +88,7 @@ public class DaoGames {
         try {
             con = ConnectionMySQL.getConnection();
             cstm = con.prepareCall("{call sp_create(?,?,?,?,?)}");
+            cstm.setBlob(1, image);
 
             cstm.setString(1, beanGames.getCategory_idCategory().getName());
             cstm.setString(2, beanGames.getName());
