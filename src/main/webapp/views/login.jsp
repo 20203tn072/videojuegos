@@ -15,14 +15,16 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 </head>
 <body>
-<center>
     <h1>Inicio de Sesión</h1>
-    <form class="login-form" action="${context}/login" method="POST">
-        <input type="text" placeholder="email"/>
-        <input type="password" placeholder="password"/>
+    <form class="login-form" action="${context}login" method="POST">
+        <label>Correo:</label>
+        <input class="form-control" type="email" name="email"/>
+        <br>
+        <label>Contraseña:</label>
+        <input class="form-control" type="password" name="password"/>
+        <br>
         <button type="submit" class="btn btn-success" name="register" value="register">Iniciar Sesión</button>
     </form>
-</center>
 <script src="${context}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 

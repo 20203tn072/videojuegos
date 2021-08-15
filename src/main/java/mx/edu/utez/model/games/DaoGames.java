@@ -37,10 +37,9 @@ public class DaoGames {
                 String photo = Base64.getEncoder().encodeToString(rs.getBytes("imgGames"));
                 beanGames.setdate_premiere(rs.getString("datePremiere"));
                 beanGames.setStatus(rs.getInt("status"));
-
                 beanGames.setCategory_idCategory(beanCategory);
 
-
+                listGames.add(beanGames);
             }
         }catch(SQLException e){
             CONSOLE.error("Ha ocurrido un error: " + e.getMessage());
@@ -71,7 +70,6 @@ public class DaoGames {
                 String photo = Base64.getEncoder().encodeToString(rs.getBytes("imgGames"));
                 beanGames.setdate_premiere(rs.getString("datePremiere"));
                 beanGames.setStatus(rs.getInt("status"));
-
                 beanGames.setCategory_idCategory(beanCategory);
             }
         }catch (SQLException e){
@@ -87,14 +85,13 @@ public class DaoGames {
         boolean flag = false;
         try {
             con = ConnectionMySQL.getConnection();
-            cstm = con.prepareCall("{call sp_create(?,?,?,?,?)}");
+            cstm = con.prepareCall("{call sp_create(?,?,?,?)}");
             cstm.setBlob(1, image);
 
-            cstm.setString(1, beanGames.getCategory_idCategory().getName());
-            cstm.setString(2, beanGames.getName());
-            cstm.setString(3, beanGames.getImgGame());
-            cstm.setString(4, beanGames.getdate_premiere());
-            cstm.setInt(5, beanGames.getCategory_idCategory().getIdCategory());
+            cstm.setString(1, beanGames.getName());
+            cstm.setString(2, beanGames.getImgGame());
+            cstm.setString(3, beanGames.getdate_premiere());
+            cstm.setInt(4, beanGames.getCategory_idCategory().getIdCategory());
             cstm.execute();
             flag = true;
         }catch (SQLException e){
@@ -109,14 +106,13 @@ public class DaoGames {
         boolean flag = false;
         try {
             con = ConnectionMySQL.getConnection();
-            cstm = con.prepareCall("{call sp_update(?,?,?,?,?,?)}");
+            cstm = con.prepareCall("{call sp_update(?,?,?,?,?)}");
 
-            cstm.setString(1, beanGames.getCategory_idCategory().getName());
-            cstm.setString(2, beanGames.getName());
-            cstm.setString(3, beanGames.getImgGame());
-            cstm.setString(4, beanGames.getdate_premiere());
-            cstm.setInt(5, beanGames.getCategory_idCategory().getIdCategory());
-            cstm.setInt(6,beanGames.getIdGames());
+            cstm.setString(1, beanGames.getName());
+            cstm.setString(2, beanGames.getImgGame());
+            cstm.setString(3, beanGames.getdate_premiere());
+            cstm.setInt(4, beanGames.getCategory_idCategory().getIdCategory());
+            cstm.setInt(5,beanGames.getIdGames());
 
             flag = cstm.execute();
         }catch (SQLException e){

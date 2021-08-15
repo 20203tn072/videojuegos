@@ -42,28 +42,22 @@ const findAll = () => {
 
 findAll();
 
-function createGame(){
-    let name = document.getElementById("name").value;
-    let image = document.getElementById("imagen").files[0];
-    let date = document.getElementById("datePremiere").value;
-    let category = document.getElementById("categoria").value;
-    let dataGame = new FormData();
-
-    dataGame.append('action', 'create');
-    dataGame.append('nameGame', name);
-    dataGame.append('image', image);
-    dataGame.append('date_Premiere', date);
-    dataGame.append('idCategory', category);
+$('[id^="btn-agregar"]').click(function(){
+    let idGame = $(this).attr('data-code');
 
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8080/servletsAsync_3C_war/createGames',
-        contentType: false,
-        processData: false,
-        data: dataGame
+        url: 'http://localhost:8080/Servlets_war/findById',
+        data: {
+            action: 'findById',
+            id: idGame
+        }
     }).done(function(res){
         console.log(res);
-        let message = res.message;
-        displayContent();
+        let game = res.user;
+
+        $('#lbl_name').text(game.idGame.name);
+        $('#lbl_image').text(game.imagen);
+        $('#lbl_date_premiere').text(game.date_premiere);
     });
-};
+});

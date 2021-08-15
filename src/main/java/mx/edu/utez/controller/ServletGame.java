@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @MultipartConfig
-@WebServlet(name = "ServletGame", urlPatterns = {"/readGames", "/creatGames", "/updateGames", "deleteGame"})
+@WebServlet(name = "ServletGame", urlPatterns = {"/readGames", "/createGames", "/updateGames", "deleteGame"})
 public class ServletGame extends HttpServlet {
     private Map map = new HashMap();
     final private Logger CONSOLE = LoggerFactory.getLogger(ServletGame.class);
